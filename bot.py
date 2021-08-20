@@ -1,6 +1,8 @@
 import os
-from typing import Text
+import praw
+import random
 import discord
+from typing import Text
 from discord import message
 from discord import channel
 from discord import member
@@ -12,6 +14,12 @@ from discord.utils import get
 from discord.ext.commands import Bot
 from discord.abc import Messageable
 
+#for reddit memes command
+reddit = praw.Reddit(client_id = "icPTZIm7OljvDFAIOfeX2Q",
+                     client_secret = "d03JweFqi6FqJ2ekj9pu9IrIZ5ff7A",
+                     username = "Xplode_29",
+                     password = "CHAcha.29",
+                     user_agent = "XplodeBot")
 
 bot = Bot(command_prefix="*", description= "bot du serveur de Xplode_29")
 member = discord.Member
@@ -20,13 +28,15 @@ textchannel = discord.TextChannel
 voicechannel = discord.VoiceChannel
 message = discord.Message
 
+#when he's ready
 @bot.event
 async def on_ready():
     print("XplodeBot is ready")
 
+#help command
 @bot.command()
 async def helpme(ctx):
-    description ="tapez *present pour que je me presente,\n*salon_prive pour créer un salon prive que seul vous et les bots peuvent y acceder.\nD'autres commandes arriveront encore prochainement, n'hésitez pas à dm le chef supreme pour proposer des commandes à ajouter !"
+    description ="tapez *present pour que je me presente,\n*meme pour avoir un meme aléatoire,\n*salon_prive pour créer un salon prive que seul vous et les bots peuvent y acceder.\nD'autres commandes arriveront encore prochainement, n'hésitez pas à dm le chef supreme pour proposer des commandes à ajouter !"
     embed = discord.Embed(description = description,
     color = 0xFF5733)
     await ctx.send(embed=embed)
@@ -142,6 +152,25 @@ async def be_member(ctx):
     member = ctx.message.author
     role = discord.utils.get(member.guild.roles, id=864239570756436009)
     await member.add_roles(role)
+
+@bot.command
+async def meme(ctx):
+    subreddit = reddit.subreddit("memes")
+    all_subs = []
+
+    top = subreddit.top(limit = 50)
+
+    for submission in top:
+        all_subs.append(submission)
+
+    random_sub = random.choice(all_subs)
+
+    name = random_sub.title
+    url =random_sub.url
+
+    em = discord.Embed(title = name)
+    em.add_image(url = url)
+    await ctx.send(embed = em)
 
 @bot.event
 async def on_member_join(member):
