@@ -155,6 +155,4 @@ async def on_member_join(member):
     channel = bot.get_channel(808717975167303751)
     await channel.send("Yo {member.mention}, Bienvenue dans La Communauté Explosive!")
 
-bot.run("os.environ['TOKEN']")
-
-g = 0
+bot.run(os.environ['TOKEN'])
