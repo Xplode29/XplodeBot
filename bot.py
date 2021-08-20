@@ -125,7 +125,7 @@ async def salon_prive(ctx):
         await channel.send('is it working ?')
 
 @bot.command()
-async def meme(ctx):
+async def embed(ctx):
     embed = discord.Embed(title="Test Embed",
     description ="Voici un test d'un embed",
     color = 0xFF5733)
