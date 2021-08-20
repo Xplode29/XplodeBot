@@ -117,8 +117,6 @@ async def salon_prive(ctx):
         description = description,
         color = 0xFF5733)
         await message.edit(embed = embed)
-        channel = discord.utils.get(guild.text_channels, name=channelname)
-        await channel.send('is it working ?')
 
 @bot.command()
 async def embed(ctx):
