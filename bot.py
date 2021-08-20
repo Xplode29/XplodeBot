@@ -1,4 +1,5 @@
 import os
+import asyncpraw
 import praw
 import random
 import discord
@@ -19,7 +20,9 @@ reddit = praw.Reddit(client_id = "icPTZIm7OljvDFAIOfeX2Q",
                      client_secret = "d03JweFqi6FqJ2ekj9pu9IrIZ5ff7A",
                      username = "Xplode_29",
                      password = "CHAcha.29",
-                     user_agent = "XplodeBot")
+                     user_agent = "XplodeBot",
+                     check_for_async=False)
+                     
 
 bot = Bot(command_prefix="*", description= "bot du serveur de Xplode_29")
 member = discord.Member
@@ -169,7 +172,7 @@ async def meme(ctx):
     url =random_sub.url
 
     em = discord.Embed(title = name)
-    em.add_image(url = url)
+    em.set_image(url = url)
     await ctx.send(embed = em)
 
 @bot.event
