@@ -153,7 +153,7 @@ async def be_member(ctx):
     role = discord.utils.get(member.guild.roles, id=864239570756436009)
     await member.add_roles(role)
 
-@bot.command
+@bot.command()
 async def meme(ctx):
     subreddit = reddit.subreddit("memes")
     all_subs = []
@@ -177,4 +177,4 @@ async def on_member_join(member):
     channel = bot.get_channel(808717975167303751)
     await channel.send("Yo {member.mention}, Bienvenue dans La Communauté Explosive!")
 
-bot.run(os.environ['TOKEN'])
+bot.run("ODYzNjkxNTQ1MzM2NjEwODM2.YOqlbw.GPkIsaiGOAsrlEGV8SRDlNk7Qw0")
