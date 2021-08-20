@@ -1,5 +1,4 @@
 import os
-import asyncpraw
 import praw
 import random
 import discord
